@@ -46,33 +46,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-
-                <configuration>
-                    <!-- 指定该Main Class为全局的唯一入口 -->
-                    <mainClass>com.example.demo.DemoApplication</mainClass>
-                    <layout>ZIP</layout>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
-                        </goals>
-                    </execution>
-                </executions>
-
             </plugin>
-
-
-
-
-
             <!-- Docker maven plugin start -->
-           <!-- <plugin>
+            <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
                 <configuration>
-                    <imageName>dockerspringboot</imageName>&lt;!&ndash;[a-z 0-9] 不然docker:build会报错&ndash;&gt;
+                    <imageName>dockerspringboot</imageName><!--[a-z 0-9] 不然docker:build会报错-->
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
@@ -82,24 +63,8 @@
                         </resource>
                     </resources>
                 </configuration>
-            </plugin>-->
-
-            <!-- docker 插件配置-->
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.10</version>
-                <configuration>
-                    <repository>lgj/webdemo</repository>
-                    <tag>1.0</tag>
-                    <buildArgs>
-                        <JAR_FILE>/target/web-1.0.jar</JAR_FILE>
-                    </buildArgs>
-                </configuration>
             </plugin>
-
             <!-- Docker maven plugin end -->
-
         </plugins>
     </build>
 
