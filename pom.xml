@@ -50,12 +50,12 @@
 
 
             <!-- Docker maven plugin start -->
-            <plugin>
+           <!-- <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.13</version>
                 <configuration>
-                    <imageName>dockerspringboot</imageName><!--[a-z 0-9] 不然docker:build会报错-->
+                    <imageName>dockerspringboot</imageName>&lt;!&ndash;[a-z 0-9] 不然docker:build会报错&ndash;&gt;
                     <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
                     <resources>
                         <resource>
@@ -65,7 +65,22 @@
                         </resource>
                     </resources>
                 </configuration>
+            </plugin>-->
+
+            <!-- docker 插件配置-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.4.10</version>
+                <configuration>
+                    <repository>lgj/webdemo</repository>
+                    <tag>1.0</tag>
+                    <buildArgs>
+                        <JAR_FILE>/target/web-1.0.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
             </plugin>
+
             <!-- Docker maven plugin end -->
 
         </plugins>
